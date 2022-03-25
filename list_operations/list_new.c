@@ -26,7 +26,7 @@ int sortList(struct node* hlink);
 
 void deleteNode(struct node **head);
 
-//int remlist(struct node* hlink);
+void removeList(struct node **hlink);
 
 int main(){
 	struct node* headp = NULL;
@@ -38,7 +38,7 @@ int main(){
 	headp = insertdata(-23, headp);
 	
 	printList(headp);
-	
+	printf("\n");
 	//srhnode(headp);
 	
 	//updatenode(headp);
@@ -46,10 +46,13 @@ int main(){
 	//countlistsize(headp);
 	//addnode(headp);
 	deleteNode(&headp);
+	printList(headp);
+	printf("\n");
 	
-	
+	removeList(&headp);
 	//sortList(headp);
 	printList(headp);
+	printf("\n");
 	
 	//comprenode(headp);
 	//displaynode(headp);
@@ -290,23 +293,7 @@ int sortList(struct node* hlink) {
         return 0;
     }  
 
-
-
-//int remlist(struct node* hlink){
-//	struct node*loop = NULL;
-//	hlink = NULL;
-//	while(loop!=NULL){
-//    	(*loop).nlink = NULL;	
-//    	(*loop).data = NULL;
-//		loop=(*loop).nlink;	
-//	}
-//	
-//    
-//    printf("List is deleted");
-//}
-
-void deleteNode(struct node **hlink)
-{
+void deleteNode(struct node **hlink){
       //temp is used to freeing the memory
       struct node *temp;
       int val;
@@ -341,5 +328,23 @@ void deleteNode(struct node **hlink)
                   loop = (*loop).nlink;
           }
       }
+}
+
+/* Function to delete the entire linked list */
+void removeList(struct node **hlink){
+   /* deref head_ref to get the real head */
+   struct node* loop = *hlink;
+   struct node* nlink;
+ 
+   while (loop != NULL)
+   {
+       nlink = (*loop).nlink;
+       free(loop);
+       loop = nlink;
+   }
+   
+   /* deref head_ref to affect the real head back
+      in the caller. */
+   *hlink = NULL;
 }
 
