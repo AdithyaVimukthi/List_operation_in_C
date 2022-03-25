@@ -24,12 +24,11 @@ int countlistsize(struct node* hlink);
 
 int sortList(struct node* hlink);
 
-int deletenode(struct node* hlink);
+void deleteNode(struct node **head);
 
 //int remlist(struct node* hlink);
 
 int main(){
-	int r;
 	struct node* headp = NULL;
 	
 	headp = insertdata(12, headp);
@@ -46,7 +45,8 @@ int main(){
 	//printList(headp);
 	//countlistsize(headp);
 	//addnode(headp);
-	deletenode(headp);
+	deleteNode(&headp);
+	
 	
 	//sortList(headp);
 	printList(headp);
@@ -292,69 +292,54 @@ int sortList(struct node* hlink) {
 
 
 
-int remlist(struct node* hlink){
-	struct node*loop = NULL;
-	hlink = NULL;
-	while(loop!=NULL){
-    	(*loop).nlink = NULL;	
-    	(*loop).data = NULL;
-		loop=(*loop).nlink;	
-	}
-	
-    
-    printf("List is deleted");
+//int remlist(struct node* hlink){
+//	struct node*loop = NULL;
+//	hlink = NULL;
+//	while(loop!=NULL){
+//    	(*loop).nlink = NULL;	
+//    	(*loop).data = NULL;
+//		loop=(*loop).nlink;	
+//	}
+//	
+//    
+//    printf("List is deleted");
+//}
+
+void deleteNode(struct node **hlink)
+{
+      //temp is used to freeing the memory
+      struct node *temp;
+      int val;
+      struct node *loop  = *hlink;
+      
+      printf("Enter deleting value : ");
+      scanf("%d", &val);
+
+      //key found on the head node.
+      //move to head node to the next and free the head.
+      if((*(*hlink)).data == val)
+      {
+          temp = *hlink;    //backup to free the memory
+          *hlink = (*(*hlink)).nlink;
+          free(temp);
+      }
+      else
+      {
+          while((*loop).nlink != NULL)
+          {
+              //if yes, we need to delete the current->next node
+              if((*(*loop).nlink).data == val)
+              {
+                  temp = loop->nlink;
+                  //node will be disconnected from the linked list.
+                  (*loop).nlink =(*(*loop).nlink).nlink;
+                  free(temp);
+                  break;
+              }
+              //Otherwise, move the current node and proceed
+              else
+                  loop = (*loop).nlink;
+          }
+      }
 }
 
-
-int deletenode(struct node* hlink){
-	int nodenum,delnodenum,fudornot;
-	struct node*loop = hlink;
-	struct node*next = NULL;
-	struct node*curt = NULL;
-	struct node* prev = NULL;
-	
-	printf("Enter deleting node number : ");
-    scanf("%d", &delnodenum);
-    
-    while(loop!=NULL){
-    	nodenum ++;
-    	if(delnodenum == 1){
-    		curt = loop;
-    		next = (*curt).nlink;
-    		loop = (*loop).nlink;
-    		break;
-		}else if(nodenum != delnodenum && delnodenum > 1 ){
-    		prev = loop;
-    		loop = (*loop).nlink;
-    		curt = loop;
-    		next = (*curt).nlink;
-		}else{
-			break;
-		}
-	}
-	
-	if(delnodenum == 1){
-		loop = (*loop).nlink;
-	}else if(delnodenum >1 && delnodenum <5){
-		(*prev).nlink = next;
-	}else if(delnodenum == 5){
-		(*prev).nlink = NULL;
-	}
-	
-	
-	if(delnodenum == 1){
-		printf("curt | %d |",(*curt).data);
-		printf("\n");
-		printf("next | %d |",(*next).data);
-		printf("\n");	
-	}else{
-		printf("prev | %d |",(*prev).data);
-		printf("\n");
-		printf("curt | %d |",(*curt).data);
-		printf("\n");
-		printf("next | %d |",(*next).data);
-		printf("\n");	
-	}
-	
-	return 0;
-}
