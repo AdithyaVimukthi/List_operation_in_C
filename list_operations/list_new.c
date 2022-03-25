@@ -39,23 +39,37 @@ int main(){
 	
 	printList(headp);
 	printf("\n");
-	//srhnode(headp);
 	
-	//updatenode(headp);
-	//printList(headp);
-	//countlistsize(headp);
-	//addnode(headp);
+	srhnode(headp);
+	printf("\n");
+	
+	updatenode(headp);
+	printList(headp);
+	printf("\n");
+	
+	addnode(headp);
+	printList(headp);
+	printf("\n");
+	
+	comprenode(headp);
+	printf("\n");
+	
+	displaynode(headp);
+	printf("\n");
+	
+	countlistsize(headp);
+	printf("\n");
+	
+	sortList(headp);
+	printf("\n");
+	
 	deleteNode(&headp);
 	printList(headp);
 	printf("\n");
 	
 	removeList(&headp);
-	//sortList(headp);
 	printList(headp);
 	printf("\n");
-	
-	//comprenode(headp);
-	//displaynode(headp);
 	
 	return 0;
 }
@@ -142,14 +156,15 @@ int updatenode(struct node* hlink){
     		fudornot = 1;
     		break;	
 		}
-		loop=(*loop).nlink;	
+		loop=(*loop).nlink;
 	}
+	
 	if(fudornot == 1){
 		printf("Node %d value is updated to %d ",getnum,upval);
 	}else{
 		printf("Node is not found");
 	}
-	printf("\n");
+	
 	return 0;	
 }
 
@@ -201,11 +216,11 @@ void comprenode(struct node* hlink){
 		loop=(*loop).nlink;	
 	}
     if (val1 > val2){
-    	printf("%d Node value is grater than %d node value ", node1, node2);
+    	printf("Node %d  value is grater than node %d  value ", node1, node2);
 	}else if (val1 == val2){
-		printf("%d Node value is equals to %d node value ", node1, node2);
+		printf("Node %d  value is equals to node %d  value ", node1, node2);
 	}else{
-		printf("%d Node value is lower than %d node value ", node1, node2);
+		printf("Node %d  value is lower than node %d  value ", node1, node2);
 	}
 }
 
