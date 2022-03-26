@@ -61,6 +61,7 @@ int main(){
 	printf("\n");
 	
 	sortList(headp);
+	printList(headp);
 	printf("\n");
 	
 	deleteNode(&headp);
@@ -164,7 +165,7 @@ int updatenode(struct node* hlink){
 	}else{
 		printf("Node is not found");
 	}
-	
+	printf("\n");
 	return 0;	
 }
 
@@ -222,6 +223,7 @@ void comprenode(struct node* hlink){
 	}else{
 		printf("Node %d  value is lower than node %d  value ", node1, node2);
 	}
+	printf("\n");
 }
 
 void displaynode(struct node* hlink){
@@ -254,7 +256,6 @@ int countlistsize(struct node* hlink){
 	
 	printf("List size is: %d",nodenum);
 	printf("\n");
-	
 	return nodenum;
 }
 
@@ -343,6 +344,7 @@ void deleteNode(struct node **hlink){
                   loop = (*loop).nlink;
           }
       }
+	  printf("\n");
 }
 
 /* Function to delete the entire linked list */
