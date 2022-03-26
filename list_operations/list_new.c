@@ -79,7 +79,7 @@ int main(){
 	return 0;
 }
 
-
+//Function for create nodes
 struct node* insertdata (int getdata, struct node* hlink){
     struct node* loop = NULL; 
     struct node* prev = NULL;
@@ -231,7 +231,7 @@ void comprenode(struct node* hlink){
     	printf("Node %d  value is grater than node %d  value ", node1, node2);
 	}else if (val1 == val2){
 		printf("Node %d  value is equals to node %d  value ", node1, node2);
-	}else{
+	}else if (val1 < val2){
 		printf("Node %d  value is lower than node %d  value ", node1, node2);
 	}
 	printf("\n");
