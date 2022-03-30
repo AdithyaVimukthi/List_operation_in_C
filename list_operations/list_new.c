@@ -33,6 +33,7 @@ void removeList(struct node **hlink);
 
 //main function
 int main(){
+	int cmdint;
 	struct node* headp = NULL;  		//Start with empty list
 	
 	headp = insertdata(12, headp);		//Inserting first five nodes
@@ -40,41 +41,125 @@ int main(){
 	headp = insertdata(-5, headp);
 	headp = insertdata(123, headp);
 	headp = insertdata(-23, headp);
-	
-	printList(headp); 	//Print the list
+
+	printf("Welcome to linked list");
 	printf("\n");
+
+	while (cmdint!=99){
+		
+		printf("\n");
+		printf("Prrint List - 0");
+		printf("\n");
+		printf("Search Node - 1");
+		printf("\n");
+		printf("Update a node - 2");
+		printf("\n");
+		printf("Add a node - 3");
+		printf("\n");
+		printf("Compere 2 nodes - 4");
+		printf("\n");
+		printf("Display a node - 5");
+		printf("\n");
+		printf("Count the list size - 6");
+		printf("\n");
+		printf("Sort the list - 7");
+		printf("\n");
+		printf("Delete the List - 8");
+		printf("\n");
+		printf("Remove the list - 9");
+		printf("\n");
+
+		printf("\n");
+		printf("Exit the programe press - 99 ");
+		printf("\n");
+		printf("\n");
+		printf("Give command number : ");
+    	scanf("%d", &cmdint);
+
+
+		if(cmdint==0){
+			printList(headp); 	
+			printf("\n");
+		}else if(cmdint==1){
+			srhnode(headp); 	
+			printf("\n");
+		}else if(cmdint==2){
+			updatenode(headp);
+			printList(headp); 
+			printf("\n");
+		}else if(cmdint==3){
+			addnode(headp);
+			printList(headp); 
+			printf("\n");
+		}else if(cmdint==4){
+			comprenode(headp);
+			printf("\n");
+		}else if(cmdint==5){
+			displaynode(headp);
+			printf("\n");
+		}else if(cmdint==6){
+			countlistsize(headp);
+			printf("\n");
+		}else if(cmdint==7){
+			sortList(headp);
+			printList(headp); 
+			printf("\n");
+		}else if(cmdint==8){
+			deleteNode(&headp);
+			printf("\n");
+		}else if(cmdint==9){
+			removeList(&headp);
+			printf("\n");
+		}else if(cmdint !=99){
+			printf("\n");
+			printf("Command Not Found.");
+			printf("\n");
+		}
+
+	}
+
+	// struct node* headp = NULL;  		//Start with empty list
 	
-	srhnode(headp); 	//Serching the nodes by node value
-	printf("\n");
+	// headp = insertdata(12, headp);		//Inserting first five nodes
+	// headp = insertdata(32, headp);
+	// headp = insertdata(-5, headp);
+	// headp = insertdata(123, headp);
+	// headp = insertdata(-23, headp);
 	
-	updatenode(headp);  //Updating the exsisting node value 
-	printList(headp);
-	printf("\n");
+	// printList(headp); 	//Print the list
+	// printf("\n");
 	
-	addnode(headp);		//Adding new node as last node of the list
-	printList(headp);
-	printf("\n");
+	// srhnode(headp); 	//Serching the nodes by node value
+	// printf("\n");
 	
-	comprenode(headp);	//Compere 2 node values
-	printf("\n");
+	// updatenode(headp);  //Updating the exsisting node value 
+	// printList(headp);
+	// printf("\n");
 	
-	displaynode(headp);	//Display a single node
-	printf("\n");
+	// addnode(headp);		//Adding new node as last node of the list
+	// printList(headp);
+	// printf("\n");
 	
-	countlistsize(headp);//Count the size of the list (Number of nodes)
-	printf("\n");
+	// comprenode(headp);	//Compere 2 node values
+	// printf("\n");
 	
-	sortList(headp);	//Sorting the nodes according to values
-	printList(headp);
-	printf("\n");
+	// displaynode(headp);	//Display a single node
+	// printf("\n");
 	
-	deleteNode(&headp);	//Deleting a single node
-	printList(headp);
-	printf("\n");
+	// countlistsize(headp);//Count the size of the list (Number of nodes)
+	// printf("\n");
 	
-	removeList(&headp);	//Deleting the whole list
-	printList(headp);
-	printf("\n");
+	// sortList(headp);	//Sorting the nodes according to values
+	// printList(headp);
+	// printf("\n");
+	
+	// deleteNode(&headp);	//Deleting a single node
+	// printList(headp);
+	// printf("\n");
+	
+	// removeList(&headp);	//Deleting the whole list
+	// printList(headp);
+	// printf("\n");
 	
 	return 0;
 }
@@ -149,7 +234,8 @@ void srhnode(struct node* hlink){
 
 //function for update exsisting node
 int updatenode(struct node* hlink){
-	int nodenum,upval,getnum,fudornot;
+
+	int nodenum,upval,getnum,fudornot = 0;
 	struct node*loop = NULL;
 	loop = hlink;
 	
@@ -175,6 +261,7 @@ int updatenode(struct node* hlink){
 		printf("Node is not found");
 	}
 	printf("\n");
+	fudornot = 0;
 	return 0;	
 }
 
@@ -208,7 +295,7 @@ int addnode(struct node* hlink){
 
 //Function for compering 2 node values
 void comprenode(struct node* hlink){
-	int val1, val2, node1, node2, nodenum; //Creating variables
+	int val1, val2, node1, node2, nodenum,fudornot1,fudornot2 = 0; //Creating variables
 	struct node*loop = NULL;
 	loop = hlink;
 	
@@ -222,18 +309,38 @@ void comprenode(struct node* hlink){
     	nodenum ++;
     	if(nodenum == node1){			//Assign node values to variables
     		val1 = (*loop).data;
-		}else if(nodenum == node2){
+			//fudornot1 = 1;
+		}
+		if(nodenum == node2){
 			val2 = (*loop).data;
+			//fudornot2 = 1;
 		}
 		loop=(*loop).nlink;	
 	}
-    if (val1 > val2){					//Compering node values and printing results
-    	printf("Node %d  value is grater than node %d  value ", node1, node2);
-	}else if (val1 == val2){
-		printf("Node %d  value is equals to node %d  value ", node1, node2);
-	}else if (val1 < val2){
-		printf("Node %d  value is lower than node %d  value ", node1, node2);
-	}
+    
+	
+	//if(fudornot1 == 1 && fudornot2 == 1 ){
+		//printf ("%d,%d",fudornot1,fudornot2);
+		if (val1 > val2){					
+    		printf("Node %d  value is grater than node %d  value ", node1, node2);
+		}else if (val1 == val2){
+			printf("Node %d  value is equals to node %d  value ", node1, node2);
+		}else if (val1 < val2){
+			printf("Node %d  value is lower than node %d  value ", node1, node2);
+		}				
+	//}
+		
+	// if(fudornot1 != 1){
+	// 	printf ("%d,%d 1ke na",fudornot1,fudornot2);
+	// 	printf("Node 1 is not found");
+	// }
+	// if(fudornot2 != 1){
+	// 	printf ("%d,%d 2ke na",fudornot1,fudornot2);
+	// 	printf("Node 2 is not found");
+	// }
+	
+	printf("\n");
+	fudornot1,fudornot2 = 0;
 	printf("\n");
 }
 
