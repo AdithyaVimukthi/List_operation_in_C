@@ -42,31 +42,34 @@ int main(){
 	headp = insertdata(123, headp);
 	headp = insertdata(-23, headp);
 
+	printf("\n");
 	printf("Welcome to linked list");
+	printf("\n");
+	printf("----------------------");
 	printf("\n");
 
 	while (cmdint!=99){
 		
 		printf("\n");
-		printf("Prrint List - 0");
+		printf("Prrint List ---------- 0");
 		printf("\n");
-		printf("Search Node - 1");
+		printf("Search Node ---------- 1");
 		printf("\n");
-		printf("Update a node - 2");
+		printf("Update a node -------- 2");
 		printf("\n");
-		printf("Add a node - 3");
+		printf("Add a node ----------- 3");
 		printf("\n");
-		printf("Compere 2 nodes - 4");
+		printf("Compere 2 nodes ------ 4");
 		printf("\n");
-		printf("Display a node - 5");
+		printf("Display a node ------- 5");
 		printf("\n");
-		printf("Count the list size - 6");
+		printf("Count the list size -- 6");
 		printf("\n");
-		printf("Sort the list - 7");
+		printf("Sort the list -------- 7");
 		printf("\n");
-		printf("Delete the List - 8");
+		printf("Delete the List ------ 8");
 		printf("\n");
-		printf("Remove the list - 9");
+		printf("Remove the list ------ 9");
 		printf("\n");
 
 		printf("\n");
@@ -75,6 +78,7 @@ int main(){
 		printf("\n");
 		printf("Give command number : ");
     	scanf("%d", &cmdint);
+		printf("\n");
 
 
 		if(cmdint==0){
@@ -85,10 +89,12 @@ int main(){
 			printf("\n");
 		}else if(cmdint==2){
 			updatenode(headp);
+			printf("\n");
 			printList(headp); 
 			printf("\n");
 		}else if(cmdint==3){
 			addnode(headp);
+			printf("\n");
 			printList(headp); 
 			printf("\n");
 		}else if(cmdint==4){
@@ -115,51 +121,13 @@ int main(){
 			printf("Command Not Found.");
 			printf("\n");
 		}
+		printf("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		printf("\n");
+		printf("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		printf("\n");
+		printf("\n");
 
 	}
-
-	// struct node* headp = NULL;  		//Start with empty list
-	
-	// headp = insertdata(12, headp);		//Inserting first five nodes
-	// headp = insertdata(32, headp);
-	// headp = insertdata(-5, headp);
-	// headp = insertdata(123, headp);
-	// headp = insertdata(-23, headp);
-	
-	// printList(headp); 	//Print the list
-	// printf("\n");
-	
-	// srhnode(headp); 	//Serching the nodes by node value
-	// printf("\n");
-	
-	// updatenode(headp);  //Updating the exsisting node value 
-	// printList(headp);
-	// printf("\n");
-	
-	// addnode(headp);		//Adding new node as last node of the list
-	// printList(headp);
-	// printf("\n");
-	
-	// comprenode(headp);	//Compere 2 node values
-	// printf("\n");
-	
-	// displaynode(headp);	//Display a single node
-	// printf("\n");
-	
-	// countlistsize(headp);//Count the size of the list (Number of nodes)
-	// printf("\n");
-	
-	// sortList(headp);	//Sorting the nodes according to values
-	// printList(headp);
-	// printf("\n");
-	
-	// deleteNode(&headp);	//Deleting a single node
-	// printList(headp);
-	// printf("\n");
-	
-	// removeList(&headp);	//Deleting the whole list
-	// printList(headp);
-	// printf("\n");
 	
 	return 0;
 }
@@ -295,7 +263,7 @@ int addnode(struct node* hlink){
 
 //Function for compering 2 node values
 void comprenode(struct node* hlink){
-	int val1, val2, node1, node2, nodenum,fudornot1,fudornot2 = 0; //Creating variables
+	int val1, val2, node1, node2, nodenum,fudornot1,fudornot2 ; //Creating variables
 	struct node*loop = NULL;
 	loop = hlink;
 	
@@ -318,26 +286,14 @@ void comprenode(struct node* hlink){
 		loop=(*loop).nlink;	
 	}
     
+	if (val1 > val2){					
+    	printf("Node %d  value is grater than node %d  value ", node1, node2);
+	}else if (val1 == val2){
+		printf("Node %d  value is equals to node %d  value ", node1, node2);
+	}else if (val1 < val2){
+		printf("Node %d  value is lower than node %d  value ", node1, node2);
+	}				
 	
-	//if(fudornot1 == 1 && fudornot2 == 1 ){
-		//printf ("%d,%d",fudornot1,fudornot2);
-		if (val1 > val2){					
-    		printf("Node %d  value is grater than node %d  value ", node1, node2);
-		}else if (val1 == val2){
-			printf("Node %d  value is equals to node %d  value ", node1, node2);
-		}else if (val1 < val2){
-			printf("Node %d  value is lower than node %d  value ", node1, node2);
-		}				
-	//}
-		
-	// if(fudornot1 != 1){
-	// 	printf ("%d,%d 1ke na",fudornot1,fudornot2);
-	// 	printf("Node 1 is not found");
-	// }
-	// if(fudornot2 != 1){
-	// 	printf ("%d,%d 2ke na",fudornot1,fudornot2);
-	// 	printf("Node 2 is not found");
-	// }
 	
 	printf("\n");
 	fudornot1,fudornot2 = 0;
@@ -385,7 +341,11 @@ int sortList(struct node* hlink) {
         int temp,code;  
         
 		//Get sorting order
-        printf("Sort Low to High - Enter 1 , Sort High to Low - Enter 2 : ");
+        printf("Sort Low to High - Enter 1 ");
+		printf("\n");
+		printf("Sort High to Low - Enter 2 ");
+		printf("\n");
+		printf("Enter command number: ");
     	scanf("%d", &code);
     	
     	if (code == 1){ //Sorting the list to ascending order
@@ -478,7 +438,8 @@ void removeList(struct node **hlink){
        		loop = nlink;
 
    		}
-   		*hlink = NULL;					//Clear the head node
+   		*hlink = NULL;
+		printf("\n");					//Clear the head node
 		printf("List is deleted");
 	}
    	
