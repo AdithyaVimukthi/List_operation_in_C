@@ -67,7 +67,7 @@ int main(){
 		printf("\n");
 		printf("Sort the list -------- 7");
 		printf("\n");
-		printf("Delete the List ------ 8");
+		printf("Delete a node -------- 8");
 		printf("\n");
 		printf("Remove the list ------ 9");
 		printf("\n");
@@ -112,6 +112,7 @@ int main(){
 			printf("\n");
 		}else if(cmdint==8){
 			deleteNode(&headp);
+			printList(headp);
 			printf("\n");
 		}else if(cmdint==9){
 			removeList(&headp);
@@ -263,7 +264,7 @@ int addnode(struct node* hlink){
 
 //Function for compering 2 node values
 void comprenode(struct node* hlink){
-	int val1, val2, node1, node2, nodenum,fudornot1,fudornot2 ; //Creating variables
+	int val1, val2, node1, node2, nodenum ; //Creating variables
 	struct node*loop = NULL;
 	loop = hlink;
 	
@@ -277,11 +278,9 @@ void comprenode(struct node* hlink){
     	nodenum ++;
     	if(nodenum == node1){			//Assign node values to variables
     		val1 = (*loop).data;
-			//fudornot1 = 1;
 		}
 		if(nodenum == node2){
 			val2 = (*loop).data;
-			//fudornot2 = 1;
 		}
 		loop=(*loop).nlink;	
 	}
@@ -293,10 +292,7 @@ void comprenode(struct node* hlink){
 	}else if (val1 < val2){
 		printf("Node %d  value is lower than node %d  value ", node1, node2);
 	}				
-	
-	
-	printf("\n");
-	fudornot1,fudornot2 = 0;
+
 	printf("\n");
 }
 
