@@ -36,7 +36,7 @@ int main(){
 	int cmdint;
 	struct node* headp = NULL;  		//Start with empty list
 	
-	headp = insertdata(12, headp);		//Inserting first five nodes
+	headp = insertdata(123, headp);		//Inserting first five nodes
 	headp = insertdata(32, headp);
 	headp = insertdata(-5, headp);
 	headp = insertdata(123, headp);
@@ -274,17 +274,21 @@ void comprenode(struct node* hlink){
     printf("Enter node number 2 : ");
     scanf("%d", &node2);
     
+	nodenum = 0;
     while(loop!=NULL){
     	nodenum ++;
     	if(nodenum == node1){			//Assign node values to variables
     		val1 = (*loop).data;
-		}
-		if(nodenum == node2){
+		}else if(nodenum == node2){
 			val2 = (*loop).data;
 		}
 		loop=(*loop).nlink;	
 	}
     
+	printf("\n");
+	printf("Node %d = %d , Node %d = %d ",node1,val1,node2,val2); 
+	printf("\n");
+
 	if (val1 > val2){					
     	printf("Node %d  value is grater than node %d  value ", node1, node2);
 	}else if (val1 == val2){
