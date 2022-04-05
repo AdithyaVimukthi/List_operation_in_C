@@ -51,7 +51,7 @@ int main(){
 	while (cmdint!=99){
 		
 		printf("\n");
-		printf("Print List ---------- 0");
+		printf("Print List ----------- 0");
 		printf("\n");
 		printf("Search Node ---------- 1");
 		printf("\n");
