@@ -183,21 +183,23 @@ void srhnode(struct node* hlink){
 	
 	printf("Enter a value for search: ");	//Ask searching value from user
     scanf("%d", &srhval);
-    
+	printf("\n");
+
+    nodenum,fudornot = 0;
     while(loop!=NULL){
     	nodenum ++;
-    	if(srhval == (*loop).data){			//Check whether any node value is equal to given search value
-    		fudornot = 1;
-    		break;	
+    	if(srhval == (*loop).data){	
+			printf("Value found in: %d node ",nodenum);	//Check whether any node value is equal to given search value
+			printf("\n");
+			fudornot = 1;	
 		}
 		loop=(*loop).nlink;					//Go to next node
 	}
 	
-	if(fudornot == 1){						//Publish the results of search
-		printf("Value found in: %d node ",nodenum);
-	}else{
+	if(fudornot == 0){						//Publish the results of search
 		printf("Value not found in list.");
 	}
+
 	printf("\n");
 }
 
@@ -274,7 +276,7 @@ void comprenode(struct node* hlink){
     printf("Enter node number 2 : ");
     scanf("%d", &node2);
     
-	nodenum = 0;
+	nodenum = 0 , val1 = 0, val2 = 0;
     while(loop!=NULL){
     	nodenum ++;
     	if(nodenum == node1){			//Assign node values to variables
@@ -284,18 +286,25 @@ void comprenode(struct node* hlink){
 		}
 		loop=(*loop).nlink;	
 	}
-    
-	printf("\n");
-	printf("Node %d = %d , Node %d = %d ",node1,val1,node2,val2); 
-	printf("\n");
 
-	if (val1 > val2){					
-    	printf("Node %d  value is grater than node %d  value ", node1, node2);
-	}else if (val1 == val2){
-		printf("Node %d  value is equals to node %d  value ", node1, node2);
-	}else if (val1 < val2){
-		printf("Node %d  value is lower than node %d  value ", node1, node2);
-	}				
+	if(val1 == 0){
+		printf("\n");
+		printf("Node number 1 not found");
+	}else if(val2 == 0){
+		printf("\n");
+		printf("Node number 2 not found");
+	}else{
+		printf("\n");
+		printf("Node %d value = %d , Node %d value4 = %d ",node1,val1,node2,val2); 
+		printf("\n");
+		if (val1 > val2){					
+    		printf("Node %d  value is grater than node %d  value ", node1, node2);
+		}else if (val1 == val2){
+			printf("Node %d  value is equals to node %d  value ", node1, node2);
+		}else if (val1 < val2){
+			printf("Node %d  value is lower than node %d  value ", node1, node2);
+		}
+	}
 
 	printf("\n");
 }
@@ -307,7 +316,9 @@ void displaynode(struct node* hlink){
 	
 	printf("Enter node number to display: ");	//Get node number
     scanf("%d", &disnode);
-    
+	printf("\n");
+
+    nodeval = 0;
     while(loop!=NULL){
     	nodenum ++;
     	if(nodenum == disnode){					//Visit for given node
@@ -316,6 +327,10 @@ void displaynode(struct node* hlink){
     		break;	
 		}
 		loop=(*loop).nlink;	
+	}
+	if(nodeval == 0){
+		printf("\n");
+		printf("Node not found");
 	}
 	printf("\n");
 }
@@ -388,36 +403,50 @@ int sortList(struct node* hlink) {
 
 //Function for Delete node
 void deleteNode(struct node **hlink){
-      struct node *temp;
-      int val;
-      struct node *loop  = *hlink;
+    struct node *temp;
+    int val,fudornot;
+    struct node *loop  = *hlink;
       
-      printf("Enter deleting value : "); //Get deleting value
-      scanf("%d", &val);
+    printf("Enter deleting value : "); //Get deleting value
+    scanf("%d", &val);
 
-      //Move to head node to the next and free the head.
-      if((*(*hlink)).data == val)
-      {
-          temp = *hlink;    //Backup to free the memory
-          *hlink = (*(*hlink)).nlink;
-          free(temp);
-      }
-      else //If deleting middle node or end node
-      {
-          while((*loop).nlink != NULL)
-          {
-              if((*(*loop).nlink).data == val)
-              {
-                  temp = (*loop).nlink;
-                  (*loop).nlink =(*(*loop).nlink).nlink;
-                  free(temp);
-                  break;
-              }
-              else
-                  loop = (*loop).nlink;//Go to next node
-          }
-      }
-	  printf("\n");
+	fudornot = 0;
+    //Move to head node to the next and free the head.
+    if((*(*hlink)).data == val)
+    {
+        temp = *hlink;    //Backup to free the memory
+        *hlink = (*(*hlink)).nlink;
+        free(temp);
+		fudornot = 1;
+    }
+    else //If deleting middle node or end node
+    {
+        while((*loop).nlink != NULL)
+        {
+            if((*(*loop).nlink).data == val)
+            {
+                temp = (*loop).nlink;
+                (*loop).nlink =(*(*loop).nlink).nlink;
+                free(temp);
+				fudornot = 1;
+                break;
+            }
+            else
+                loop = (*loop).nlink;//Go to next node
+        }
+    }
+
+	if(fudornot == 0){
+		printf("\n");
+		printf("Node value not found.");
+		printf("\n");
+	}else if(fudornot == 1){
+		printf("\n");
+		printf("Node deleted.");
+		printf("\n");
+	}
+
+	printf("\n");
 }
 
 // Function to delete the entire linked list 
