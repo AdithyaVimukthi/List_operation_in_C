@@ -189,7 +189,8 @@ void srhnode(struct node* hlink){
     while(loop!=NULL){
     	nodenum ++;
     	if(srhval == (*loop).data){	
-			printf("Value found in: %d node ",nodenum);	//Check whether any node value is equal to given search value
+			//Check whether any node value is equal to given search value
+			printf("Value found in: %d node ",nodenum);
 			printf("\n");
 			fudornot = 1;	
 		}
@@ -318,12 +319,11 @@ void displaynode(struct node* hlink){
     scanf("%d", &disnode);
 	printf("\n");
 
-    nodeval = 0;
+    nodenum = 0;
     while(loop!=NULL){
     	nodenum ++;
     	if(nodenum == disnode){					//Visit for given node
     		nodeval = (*loop).data;
-    		printf("Node Vlaue is: %d",nodeval);//Print the node value
     		break;	
 		}
 		loop=(*loop).nlink;	
@@ -331,6 +331,8 @@ void displaynode(struct node* hlink){
 	if(nodeval == 0){
 		printf("\n");
 		printf("Node not found");
+	}else {
+		printf("Node Vlaue is: %d",nodeval);  //Print the node value
 	}
 	printf("\n");
 }
