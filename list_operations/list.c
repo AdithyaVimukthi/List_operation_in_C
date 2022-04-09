@@ -178,6 +178,7 @@ void printList(struct node* hlink){
 
 //Function for search node
 void srhnode(struct node* hlink){
+	
 	int srhval,nodenum,fudornot;			//Creating variables
 	struct node*loop = NULL;
 	loop = hlink;
@@ -238,7 +239,7 @@ int updatenode(struct node* hlink){
 	return 0;	
 }
 
-//Add node to the list
+//Add node to the list with user input
 void addnode(struct node** hlink){   
     int n,data,nodenum,confmint;
 	struct node* prev = NULL;
