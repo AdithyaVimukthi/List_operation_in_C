@@ -255,7 +255,7 @@ void addnode(struct node** hlink){
     // Can't insert if position to insert is greater than size of Linked List
     // can insert after negative pos
 
-    if(n < 0 || n > size){
+    if(n < 1 || n > size){
         printf("\nList has only %d nodes.\nIf you want to add your node to end of the list press 1 : ",size);
 		scanf("%d", &confmint);
 
