@@ -387,8 +387,6 @@ int countlistsize(struct node* hlink){
 		loop=(*loop).nlink;	
 	}
 	
-	// printf("List size is: %d",nodenum);	//Print the results
-	// printf("\n");
 	return nodenum;
 }
 
